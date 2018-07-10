@@ -1,0 +1,50 @@
+{
+  "name": "dev-command",
+  "description": "A lean, opinionated command tool",
+  "version": "0.0.1",
+  "author": "devrsi0n <devrsi0n@gmail.com>",
+  "bin": {
+    "dev": "./bin/run"
+  },
+  "bugs": "https://github.com/devrsi0n/dev-command/issues",
+  "dependencies": {
+    "@oclif/command": "^1.4.34",
+    "@oclif/config": "^1.6.33",
+    "@oclif/plugin-help": "^2.0.5"
+  },
+  "devDependencies": {
+    "@devrsi0n/eslint-config-base": "0.0.1",
+    "@oclif/test": "^1.1.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "babel-eslint": "^8.2.5",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.13.7"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/devrsi0n/dev-command",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "dev"
+  },
+  "repository": "devrsi0n/dev-command",
+  "scripts": {
+    "posttest": "eslint .",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
+  }
+}
