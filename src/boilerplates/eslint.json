@@ -1,0 +1,5 @@
+{
+  "root": true,
+  "extends": "{{configName}}",
+  "parser": "babel-eslint"
+}

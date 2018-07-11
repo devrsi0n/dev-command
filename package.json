@@ -10,7 +10,11 @@
   "dependencies": {
     "@oclif/command": "^1.4.34",
     "@oclif/config": "^1.6.33",
-    "@oclif/plugin-help": "^2.0.5"
+    "@oclif/plugin-help": "^2.0.5",
+    "fs-extra": "^6.0.1",
+    "inquirer": "^6.0.0",
+    "shelljs": "^0.8.2",
+    "template-file": "^3.0.1"
   },
   "devDependencies": {
     "@devrsi0n/eslint-config-base": "0.0.1",
