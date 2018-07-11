@@ -1,1 +1,3 @@
-module.exports = require('@oclif/command')
+'use strict';
+
+module.exports = require('@oclif/command');
