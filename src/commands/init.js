@@ -18,7 +18,7 @@ class InitCommand extends Command {
         {
           type: 'list',
           name: 'type',
-          message: 'Boilerplate type: ',
+          message: 'Boilerplate type',
           choices: ['eslint', 'editorconfig', 'commitlint', 'react'],
         },
       ]);
@@ -39,20 +39,37 @@ class InitCommand extends Command {
   }
 
   async askESLintConfig() {
-    const answer = await inquirer.prompt([
+    const choices = [
+      'eslint-config-airbnb-base',
+      'eslint-config-airbnb',
+      '@devrsi0n/eslint-config-base',
+    ].map(name => ({ name, value: name }));
+
+    const { name } = await inquirer.prompt([
       {
         type: 'list',
         name: 'name',
-        message: 'ESLint config: ',
+        message: 'ESLint config',
         choices: [
-          'eslint-config-airbnb-base',
-          'eslint-config-airbnb',
-          '@devrsi0n/eslint-config-base',
+          ...choices,
+          new inquirer.Separator(),
+          {
+            name: 'Custom npm package',
+            value: 'custom',
+          },
         ],
         default: '@devrsi0n/eslint-config-base',
       },
     ]);
-    return answer.name;
+    if (name === 'custom') {
+      const { customName } = await inquirer.prompt({
+        type: 'input',
+        name: 'customName',
+        message: 'Custom npm package name',
+      });
+      return customName;
+    }
+    return name;
   }
 
   async installESLint(configName) {
