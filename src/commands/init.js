@@ -5,8 +5,12 @@ const { Command, flags: flag } = require('@oclif/command');
 const inquirer = require('inquirer');
 const fs = require('fs-extra');
 const { renderTemplateFile } = require('template-file');
+const ora = require('ora');
+const logSymbols = require('log-symbols');
+
 const { exec } = require('../helpers/shell');
 
+const spinner = ora('Installing config file and dependencies\n');
 const cwd = process.cwd();
 
 class InitCommand extends Command {
@@ -14,53 +18,65 @@ class InitCommand extends Command {
     const { flags } = this.parse(InitCommand);
     let { type } = flags;
     if (!type) {
-      const answer = await inquirer.prompt([
-        {
-          type: 'list',
-          name: 'type',
-          message: 'Boilerplate type',
-          choices: ['eslint', 'editorconfig', 'commitlint', 'react'],
-        },
-      ]);
+      const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'type',
+        message: 'Boilerplate type',
+        choices: [
+          {
+            name: 'create-react-app integrate with all linter',
+            value: 'react',
+          },
+          new inquirer.Separator(),
+          'ESLint',
+          'prettier',
+          'editorconfig',
+          'commitlint',
+        ],
+      });
       type = answer.type; // eslint-disable-line
     }
     switch (type) {
-      case 'eslint': {
+      case 'ESLint': {
         const name = await this.askESLintConfig();
+        spinner.start();
         await this.installESLint(name);
         break;
       }
-      case 'editorconfig':
+      case 'prettier': {
+        spinner.start();
+        await this.installPrettier();
+        break;
+      }
+      case 'editorconfig': {
+        spinner.start();
         await this.installEditorconfig();
         break;
+      }
       default:
         throw new Error(`Unexpected boilerplate type: ${type}`);
     }
+    spinner.stop();
+    this.log(`${logSymbols.success} Done`);
   }
 
   async askESLintConfig() {
-    const choices = [
-      'eslint-config-airbnb-base',
-      'eslint-config-airbnb',
-      '@devrsi0n/eslint-config-base',
-    ].map(name => ({ name, value: name }));
-
-    const { name } = await inquirer.prompt([
-      {
-        type: 'list',
-        name: 'name',
-        message: 'ESLint config',
-        choices: [
-          ...choices,
-          new inquirer.Separator(),
-          {
-            name: 'Custom npm package',
-            value: 'custom',
-          },
-        ],
-        default: '@devrsi0n/eslint-config-base',
-      },
-    ]);
+    const { name } = await inquirer.prompt({
+      type: 'list',
+      name: 'name',
+      message: 'ESLint config',
+      choices: [
+        'eslint-config-airbnb-base',
+        'eslint-config-airbnb',
+        '@devrsi0n/eslint-config-base',
+        new inquirer.Separator(),
+        {
+          name: 'Custom npm package',
+          value: 'custom',
+        },
+      ],
+      default: '@devrsi0n/eslint-config-base',
+    });
     if (name === 'custom') {
       const { customName } = await inquirer.prompt({
         type: 'input',
@@ -77,6 +93,11 @@ class InitCommand extends Command {
     await exec(`npm install -D ${configName}`);
     await exec(`npx install-peerdeps --dev ${configName}`);
     await exec(`npm install -D babel-eslint`);
+  }
+
+  async installPrettier() {
+    await this.copyBoilerplate('prettier', '.prettierrc');
+    await exec('npm install -D prettier');
   }
 
   async installEditorconfig() {
