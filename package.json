@@ -1,7 +1,7 @@
 {
   "name": "dev-command",
   "description": "A lean, opinionated command tool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "devrsi0n <devrsi0n@gmail.com>",
   "bin": {
     "dev": "./bin/run"
@@ -41,7 +41,8 @@
   ],
   "homepage": "https://github.com/devrsi0n/dev-command",
   "keywords": [
-    "oclif"
+    "oclif",
+    "cli"
   ],
   "license": "MIT",
   "main": "src/index.js",
@@ -55,6 +56,6 @@
   "repository": "devrsi0n/dev-command",
   "scripts": {
     "precommit": "eslint --fix .",
-    "test": "TEST_OUTPUT=1 nyc mocha --forbid-only \"test/**/*.test.js\""
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
   }
 }
