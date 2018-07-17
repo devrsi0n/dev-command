@@ -11,12 +11,15 @@
     "@oclif/command": "^1.4.34",
     "@oclif/config": "^1.6.33",
     "@oclif/plugin-help": "^2.0.5",
+    "debug": "^3.1.0",
     "fs-extra": "^6.0.1",
     "inquirer": "^6.0.0",
     "log-symbols": "^2.2.0",
     "ora": "^2.1.0",
     "shelljs": "^0.8.2",
-    "template-file": "^3.0.1"
+    "template-file": "^3.0.1",
+    "yeoman-environment": "^2.3.0",
+    "yeoman-generator": "^3.0.0"
   },
   "devDependencies": {
     "@devrsi0n/eslint-config-base": "0.0.1",
@@ -53,7 +56,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "devrsi0n/dev-command",
+  "repository": "https://github.com/devrsi0n/dev-command",
   "scripts": {
     "precommit": "eslint --fix .",
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\""

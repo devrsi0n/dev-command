@@ -1,19 +1,19 @@
 'use strict';
 
 const path = require('path');
-const { Command, flags: flag } = require('@oclif/command');
+const { flags: flag } = require('@oclif/command');
 const inquirer = require('inquirer');
 const fs = require('fs-extra');
 const { renderTemplateFile } = require('template-file');
 const ora = require('ora');
-const logSymbols = require('log-symbols');
 
 const { exec } = require('../helpers/shell');
+const BaseCommand = require('../base');
 
 const spinner = ora('Installing config file and dependencies\n');
 const cwd = process.cwd();
 
-class InitCommand extends Command {
+class InitCommand extends BaseCommand {
   async run() {
     const { flags } = this.parse(InitCommand);
     let { type } = flags;
@@ -57,7 +57,7 @@ class InitCommand extends Command {
         throw new Error(`Unexpected boilerplate type: ${type}`);
     }
     spinner.stop();
-    this.log(`${logSymbols.success} Done`);
+    this.success('Done');
   }
 
   async askESLintConfig() {
@@ -101,7 +101,9 @@ class InitCommand extends Command {
   }
 
   async installEditorconfig() {
-    await this.copyBoilerplate('editorconfig', '.editorconfig');
+    // await this.copyBoilerplate('editorconfig', '.editorconfig');
+    this.debug('Install .editorconfig');
+    this.generate('editorconfig');
   }
 
   async copyBoilerplate(srcName, dstName, data = {}) {
