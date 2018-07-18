@@ -8,11 +8,7 @@ class PrettierGenerator extends Generator {
     const to = this.destinationPath('.prettierrc');
     this.debug(`from: ${from}, to: ${to}`);
     this.fs.copyTpl(from, to, {});
-    if (this.useYarn) {
-      this.yarnInstall('prettier', { dev: true });
-    } else {
-      this.npmInstall('prettier', { saveDev: true });
-    }
+    this.install('prettier');
   }
 }
 

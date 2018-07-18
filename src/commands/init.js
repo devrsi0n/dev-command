@@ -40,6 +40,10 @@ class InitCommand extends BaseCommand {
         await this.generate('editorconfig');
         break;
       }
+      case 'commitlint': {
+        await this.generate('commitlint');
+        break;
+      }
       default:
         throw new Error(`Unexpected boilerplate type: ${type}`);
     }

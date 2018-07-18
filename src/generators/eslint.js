@@ -1,7 +1,6 @@
 'use strict';
 
 const Generator = require('./base');
-const inquirer = require('inquirer');
 
 class ESLintGenerator extends Generator {
   async prompting() {
@@ -14,7 +13,7 @@ class ESLintGenerator extends Generator {
         'eslint-config-airbnb',
         '@devrsi0n/eslint-config-base',
         '@devrsi0n/eslint-config-react',
-        new inquirer.Separator(),
+        new this.inquirer.Separator(),
         {
           name: 'Custom npm package',
           value: 'custom',

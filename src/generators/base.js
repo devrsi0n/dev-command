@@ -5,6 +5,7 @@ const Generator = require('yeoman-generator');
 const { exec, execSync } = require('../helpers/shell');
 const ora = require('ora');
 const debug = require('debug')('dev-command');
+const inquirer = require('inquirer');
 
 const spinner = ora('Installing config file and dependencies\n');
 
@@ -15,6 +16,7 @@ class BaseGenerator extends Generator {
     if (!this.pjson) throw new Error('not in a project directory');
 
     this.sourceRoot(path.join(__dirname, '../boilerplates'));
+    this.inquirer = inquirer;
     this.debug = debug;
     this.spinner = spinner;
     this.exec = exec;
@@ -28,6 +30,14 @@ class BaseGenerator extends Generator {
 
   doesDstExists($path) {
     return this.fs.exists(this.destinationPath($path));
+  }
+
+  install(pkgs, options) {
+    if (this.useYarn) {
+      this.yarnInstall(pkgs, { dev: true, ...options });
+    } else {
+      this.npmInstall(pkgs, { saveDev: true, ...options });
+    }
   }
 }
 
