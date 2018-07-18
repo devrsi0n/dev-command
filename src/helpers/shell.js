@@ -24,4 +24,8 @@ function exec(cmdStr, option = {}) {
   });
 }
 
-module.exports = { exec };
+function execSync(cmdStr, option = {}) {
+  return shell.exec(cmdStr, { ...option, silent: true, async: false });
+}
+
+module.exports = { exec, execSync };

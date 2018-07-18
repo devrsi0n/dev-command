@@ -3,21 +3,18 @@
 const { Command, flags } = require('@oclif/command');
 const { createEnv } = require('yeoman-environment');
 const logSymbols = require('log-symbols');
+const inquirer = require('inquirer');
 
 class BaseCommand extends Command {
-  // log(msg, level) {
-  //   switch (this.flags.loglevel) {
-  //     case 'error':
-  //       if (level === 'error') console.error(msg);
-  //       break;
-  //     // a complete example would need to have all the levels
-  //   }
-  // }
+  constructor(...args) {
+    super(...args);
+    this.inquirer = inquirer;
+  }
 
   async generate(type, generatorOptions) {
     const env = createEnv();
 
-    env.register(require.resolve(`./generators/${type}`), `dev:${type}`);
+    env.register(require.resolve(`../generators/${type}`), `dev:${type}`);
 
     await new Promise((resolve, reject) => {
       env.run(`dev:${type}`, generatorOptions, (err, results) => {
@@ -31,17 +28,14 @@ class BaseCommand extends Command {
     this.log(`${logSymbols.success} ${msg}`);
   }
 
-  async init(err) {
-    this.warn(`Init error: ${err}`);
+  async init() {
     const parsed = this.parse(this.constructor);
     this.flags = parsed.flags;
   }
 
   async catch(err) {
-    this.warn(`${logSymbols.warning} ${JSON.stringify(err, null, 2)}`);
+    this.warn(`${JSON.stringify(err, null, 2)}`);
   }
-
-  // async finally(err) {}
 }
 
 BaseCommand.flags = {
