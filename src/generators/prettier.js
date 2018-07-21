@@ -1,6 +1,6 @@
 'use strict';
 
-const Generator = require('./base');
+const Generator = require('./base-generator');
 
 class PrettierGenerator extends Generator {
   async writing() {
@@ -8,7 +8,17 @@ class PrettierGenerator extends Generator {
     const to = this.destinationPath('.prettierrc');
     this.debug(`from: ${from}, to: ${to}`);
     this.fs.copyTpl(from, to, {});
-    this.install('prettier');
+    this.install(['prettier', 'lint-staged', 'husky@next']);
+    this.fs.extendJSON(this.destinationPath('package.json'), {
+      husky: {
+        hooks: {
+          'pre-commit': 'lint-staged',
+        },
+      },
+      'lint-staged': {
+        '*.{json,css,md}': ['prettier --write', 'git add'],
+      },
+    });
   }
 }
 

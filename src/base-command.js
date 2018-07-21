@@ -3,18 +3,19 @@
 const { Command, flags } = require('@oclif/command');
 const { createEnv } = require('yeoman-environment');
 const logSymbols = require('log-symbols');
-const inquirer = require('inquirer');
+const { prompt, Separator } = require('inquirer');
 
 class BaseCommand extends Command {
   constructor(...args) {
     super(...args);
-    this.inquirer = inquirer;
+    this.prompt = prompt;
+    this.Separator = Separator;
   }
 
   async generate(type, generatorOptions) {
     const env = createEnv();
 
-    env.register(require.resolve(`../generators/${type}`), `dev:${type}`);
+    env.register(require.resolve(`./generators/${type}`), `dev:${type}`);
 
     await new Promise((resolve, reject) => {
       env.run(`dev:${type}`, generatorOptions, (err, results) => {
@@ -31,10 +32,6 @@ class BaseCommand extends Command {
   async init() {
     const parsed = this.parse(this.constructor);
     this.flags = parsed.flags;
-  }
-
-  async catch(err) {
-    this.warn(`${JSON.stringify(err, null, 2)}`);
   }
 }
 

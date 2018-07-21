@@ -1,6 +1,6 @@
 'use strict';
 
-const Generator = require('./base');
+const Generator = require('./base-generator');
 
 class ESLintGenerator extends Generator {
   async prompting() {
@@ -40,15 +40,20 @@ class ESLintGenerator extends Generator {
     const to = this.destinationPath('.eslintrc');
     this.debug(`from: ${from}, to: ${to}`);
     this.fs.copyTpl(from, to, { configName });
-    let installStr = 'npm install';
-    if (this.useYarn) {
-      installStr = 'yarn add';
-    }
-    installStr += ' --dev';
-    await this.exec(`${installStr} ${configName}`);
+    await this.install(configName);
+    await this.install(`babel-eslint`);
     await this.exec(`npx install-peerdeps --dev ${configName}`);
-    await this.exec(`${installStr} babel-eslint`);
     this.spinner.stop();
+    this.fs.extendJSON(this.destinationPath('package.json'), {
+      husky: {
+        hooks: {
+          'pre-commit': 'lint-staged',
+        },
+      },
+      'lint-staged': {
+        '*.{js,jsx}': ['eslint --fix', 'git add'],
+      },
+    });
   }
 }
 

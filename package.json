@@ -1,6 +1,6 @@
 {
   "name": "dev-command",
-  "description": "A lean, opinionated command tool",
+  "description": "A modern, flexible command tool for frontend developers",
   "version": "0.0.3",
   "author": "devrsi0n <devrsi0n@gmail.com>",
   "bin": {
@@ -21,6 +21,8 @@
     "yeoman-generator": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-angular": "^7.0.1",
     "@devrsi0n/eslint-config-base": "0.0.1",
     "@oclif/test": "^1.1.0",
     "babel-eslint": "^8.2.5",
@@ -58,6 +60,7 @@
   "repository": "https://github.com/devrsi0n/dev-command",
   "scripts": {
     "precommit": "eslint --fix .",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "commitmsg": "commitlint -E GIT_PARAMS"
   }
 }

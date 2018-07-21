@@ -1,15 +1,15 @@
 'use strict';
 
 const { flags: flag } = require('@oclif/command');
-const BaseCommand = require('./base');
+const BaseCommand = require('../base-command');
 
 class InitCommand extends BaseCommand {
   async run() {
-    const { inquirer } = this;
+    const { prompt, Separator } = this;
     const { flags } = this.parse(InitCommand);
     let { type } = flags;
     if (!type) {
-      const answer = await inquirer.prompt({
+      const answer = await prompt({
         type: 'list',
         name: 'type',
         message: 'Boilerplate type',
@@ -18,7 +18,7 @@ class InitCommand extends BaseCommand {
             name: 'create-react-app integrate with all linter',
             value: 'react',
           },
-          new inquirer.Separator(),
+          new Separator(),
           'ESLint',
           'prettier',
           'editorconfig',

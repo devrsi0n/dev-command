@@ -1,6 +1,6 @@
 'use strict';
 
-const Generator = require('./base');
+const Generator = require('./base-generator');
 const debug = require('debug')('dev-command');
 
 class EditorConfigGenerator extends Generator {
