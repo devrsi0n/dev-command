@@ -22,6 +22,7 @@ class InitCommand extends BaseCommand {
           'commitlint',
           'babel',
           'editorconfig',
+          'license',
           'gitignore',
           new Separator(),
           {
