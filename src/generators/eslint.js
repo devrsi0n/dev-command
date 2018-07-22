@@ -11,8 +11,14 @@ class ESLintGenerator extends Generator {
       choices: [
         'eslint-config-airbnb-base',
         'eslint-config-airbnb',
-        '@devrsi0n/eslint-config-base',
-        '@devrsi0n/eslint-config-react',
+        {
+          name: '@devrsi0n/eslint-config-base, integrate with prettier',
+          value: '@devrsi0n/eslint-config-base',
+        },
+        {
+          name: '@devrsi0n/eslint-config-react, integrate with prettier',
+          value: '@devrsi0n/eslint-config-react',
+        },
         new this.inquirer.Separator(),
         {
           name: 'Custom npm package',
@@ -36,15 +42,11 @@ class ESLintGenerator extends Generator {
   async writing() {
     this.spinner.start();
     const { configName } = this;
-    const from = this.templatePath('.eslintrc.ejs');
-    const to = this.destinationPath('.eslintrc');
-    this.debug(`from: ${from}, to: ${to}`);
-    this.fs.copyTpl(from, to, { configName });
-    await this.install(configName);
-    await this.install(`babel-eslint`);
+    this.copyBoilerplate('.eslintrc.ejs');
+    await this.install([configName, 'babel-eslint']);
     await this.exec(`npx install-peerdeps --dev ${configName}`);
     this.spinner.stop();
-    this.fs.extendJSON(this.destinationPath('package.json'), {
+    this.extendPackage({
       husky: {
         hooks: {
           'pre-commit': 'lint-staged',

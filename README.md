@@ -1,6 +1,6 @@
 # dev-command
 
-A modern, flexible command tool for frontend developers.
+A modern, flexible command tool for JavaScript developers.
 
 [![Version](https://img.shields.io/npm/v/dev-command.svg)](https://npmjs.org/package/dev-command)
 [![CircleCI](https://circleci.com/gh/devrsi0n/dev-command/tree/master.svg?style=shield)](https://circleci.com/gh/devrsi0n/dev-command/tree/master)

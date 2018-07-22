@@ -1,7 +1,6 @@
 'use strict';
 
 const Generator = require('./base-generator');
-const debug = require('debug')('dev-command');
 
 class CommitlintGenerator extends Generator {
   async prompting() {
@@ -35,13 +34,9 @@ class CommitlintGenerator extends Generator {
   }
 
   writing() {
-    const { configName } = this;
-    const from = this.templatePath('.commitlintrc.js.ejs');
-    const to = this.destinationPath('.commitlintrc.js');
-    debug(`from: ${from}, to: ${to}`);
-    this.fs.copyTpl(from, to, { configName });
-    this.install(['@commitlint/cli', '@commitlint/config-angular']);
-    this.fs.extendJSON(this.destinationPath('package.json'), {
+    this.copyBoilerplate('.commitlintrc.js.ejs');
+    this.install(['@commitlint/cli', this.configName]);
+    this.extendPackage({
       scripts: {
         commitmsg: 'commitlint -E GIT_PARAMS',
       },

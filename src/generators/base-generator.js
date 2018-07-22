@@ -39,6 +39,18 @@ class BaseGenerator extends Generator {
       this.npmInstall(pkgs, { saveDev: true, ...options });
     }
   }
+
+  copyBoilerplate(fromFileName, options) {
+    const from = this.templatePath(fromFileName);
+    const toFileName = fromFileName.slice(0, fromFileName.lastIndexOf('.'));
+    const to = this.destinationPath(toFileName);
+    this.debug(`from: ${from}, to: ${to}`);
+    this.fs.copyTpl(from, to, options || this);
+  }
+
+  extendPackage(extObj) {
+    this.fs.extendJSON(this.destinationPath('package.json'), extObj);
+  }
 }
 
 module.exports = BaseGenerator;

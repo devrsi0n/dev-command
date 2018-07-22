@@ -6,13 +6,13 @@ const path = require('path');
 process.chdir(path.resolve(__dirname, '../fixture'));
 
 describe('init', () => {
-  test
-    .stdout({ print: true })
-    .command(['init', '--type', 'prettier'])
-    .it('runs init --type prettier', ctx => {
-      // console.dir(ctx);
-      expect(ctx.stdout).to.contain('Done');
-    });
+  // test
+  //   .stdout({ print: true })
+  //   .command(['init', '--type', 'prettier'])
+  //   .it('runs init --type prettier', ctx => {
+  //     // console.dir(ctx);
+  //     expect(ctx.stdout).to.contain('Done');
+  //   });
 
   test
     .stdout({ print: true })
