@@ -15,38 +15,23 @@ class InitCommand extends BaseCommand {
         message: 'Boilerplate type',
         choices: [
           {
+            name: 'ESLint',
+            value: 'eslint',
+          },
+          'prettier',
+          'commitlint',
+          'editorconfig',
+          'gitignore',
+          new Separator(),
+          {
             name: 'create-react-app integrate with all linter',
             value: 'react',
           },
-          new Separator(),
-          'ESLint',
-          'prettier',
-          'editorconfig',
-          'commitlint',
         ],
       });
       type = answer.type; // eslint-disable-line
     }
-    switch (type) {
-      case 'ESLint': {
-        await this.generate('eslint');
-        break;
-      }
-      case 'prettier': {
-        await this.generate('prettier');
-        break;
-      }
-      case 'editorconfig': {
-        await this.generate('editorconfig');
-        break;
-      }
-      case 'commitlint': {
-        await this.generate('commitlint');
-        break;
-      }
-      default:
-        throw new Error(`Unexpected boilerplate type: ${type}`);
-    }
+    await this.generate(type);
     this.success('Done');
   }
 }

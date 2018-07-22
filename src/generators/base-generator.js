@@ -13,7 +13,7 @@ class BaseGenerator extends Generator {
   constructor(...args) {
     super(...args);
     this.pjson = this.fs.readJSON('package.json');
-    if (!this.pjson) throw new Error('not in a project directory');
+    if (!this.pjson) throw new Error('not in a JavaScript project directory');
 
     this.sourceRoot(path.join(__dirname, '../boilerplates'));
     this.inquirer = inquirer;

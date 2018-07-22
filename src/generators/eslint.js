@@ -43,8 +43,8 @@ class ESLintGenerator extends Generator {
     this.spinner.start();
     const { configName } = this;
     this.copyBoilerplate('.eslintrc.ejs');
-    await this.install([configName, 'babel-eslint']);
     await this.exec(`npx install-peerdeps --dev ${configName}`);
+    await this.install([configName, 'babel-eslint']);
     this.spinner.stop();
     this.extendPackage({
       husky: {
