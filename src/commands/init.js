@@ -20,6 +20,7 @@ class InitCommand extends BaseCommand {
           },
           'prettier',
           'commitlint',
+          'babel',
           'editorconfig',
           'gitignore',
           new Separator(),
