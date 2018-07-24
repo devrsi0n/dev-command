@@ -32,7 +32,7 @@ class BaseGenerator extends Generator {
     return this.fs.exists(this.destinationPath($path));
   }
 
-  install(pkgs, options) {
+  async install(pkgs, options) {
     if (this.useYarn) {
       this.yarnInstall(pkgs, { dev: true, ...options });
     } else {

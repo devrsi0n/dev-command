@@ -39,7 +39,7 @@ class BabelGenerator extends Generator {
     }
   }
 
-  writing() {
+  async writing() {
     const content = {
       preset: [],
     };
@@ -62,7 +62,7 @@ class BabelGenerator extends Generator {
       this.presetReact && 'babel-preset-react',
     ].filter(Boolean);
     if (pkgs.length) {
-      this.install(pkgs);
+      await this.install(pkgs);
     }
   }
 }
