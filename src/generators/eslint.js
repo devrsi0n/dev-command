@@ -43,6 +43,7 @@ class ESLintGenerator extends Generator {
     this.spinner.start();
     const { configName } = this;
     this.copyBoilerplate('.eslintrc.ejs');
+    this.copyBoilerplate('.eslintignore.ejs');
     await this.exec(`npx install-peerdeps --dev ${configName}`);
     await this.install([configName, 'babel-eslint']);
     this.spinner.stop();

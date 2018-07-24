@@ -35,7 +35,7 @@ class CommitlintGenerator extends Generator {
 
   writing() {
     this.copyBoilerplate('.commitlintrc.js.ejs');
-    this.install(['@commitlint/cli', this.configName]);
+    this.install(['husky', '@commitlint/cli', this.configName]);
     this.extendPackage({
       scripts: {
         commitmsg: 'commitlint -E GIT_PARAMS',
