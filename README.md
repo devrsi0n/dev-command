@@ -28,10 +28,11 @@ It's so simple to add good linter for your exists project.
 dev init
 
 ? Boilerplate type (Use arrow keys)
-❯ create-react-app integrate with all linter
-  ──────────────
-  ESLint
+❯ ESLint
   prettier
-  editorconfig
   commitlint
+  babel
+  editorconfig
+  license
+  gitignore
 ```

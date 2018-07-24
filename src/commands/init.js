@@ -5,7 +5,7 @@ const BaseCommand = require('../base-command');
 
 class InitCommand extends BaseCommand {
   async run() {
-    const { prompt, Separator } = this;
+    const { prompt } = this;
     const { flags } = this.parse(InitCommand);
     let { type } = flags;
     if (!type) {
@@ -24,11 +24,11 @@ class InitCommand extends BaseCommand {
           'editorconfig',
           'license',
           'gitignore',
-          new Separator(),
-          {
-            name: 'create-react-app integrate with all linter',
-            value: 'react',
-          },
+          // new Separator(),
+          // {
+          //   name: 'create-react-app integrate with all linter',
+          //   value: 'react',
+          // },
         ],
       });
       type = answer.type; // eslint-disable-line
