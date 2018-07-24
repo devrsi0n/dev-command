@@ -20,7 +20,7 @@ class BabelGenerator extends Generator {
         name: 'targets',
         choices: [
           {
-            name: 'browsers: "last 2 versions", "not ie <= 8"',
+            name: 'browsers: ["last 2 versions", "not ie <= 8"]',
             value: 'browsers',
           },
           {
