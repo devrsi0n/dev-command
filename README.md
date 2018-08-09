@@ -36,3 +36,7 @@ dev init
   license
   gitignore
 ```
+
+## TODO
+
+- jsinspect

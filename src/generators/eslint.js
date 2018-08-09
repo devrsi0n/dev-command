@@ -9,16 +9,7 @@ class ESLintGenerator extends Generator {
       name: 'name',
       message: 'ESLint config',
       choices: [
-        'eslint-config-airbnb-base',
-        'eslint-config-airbnb',
-        {
-          name: '@devrsi0n/eslint-config-base, integrate with prettier',
-          value: '@devrsi0n/eslint-config-base',
-        },
-        {
-          name: '@devrsi0n/eslint-config-react, integrate with prettier',
-          value: '@devrsi0n/eslint-config-react',
-        },
+        ...this.getESLintConfigList(),
         new this.inquirer.Separator(),
         {
           name: 'Custom npm package',
@@ -39,12 +30,27 @@ class ESLintGenerator extends Generator {
     this.configName = name;
   }
 
+  getESLintConfigList() {
+    return [
+      'eslint-config-airbnb-base',
+      'eslint-config-airbnb',
+      {
+        name: '@devrsi0n/eslint-config-base, integrate with prettier',
+        value: '@devrsi0n/eslint-config-base',
+      },
+      {
+        name: '@devrsi0n/eslint-config-react, integrate with prettier',
+        value: '@devrsi0n/eslint-config-react',
+      },
+    ];
+  }
+
   async writing() {
     this.spinner.start();
     const { configName } = this;
     this.copyBoilerplate('.eslintrc.ejs');
     this.copyBoilerplate('.eslintignore.ejs');
-    await this.install(['eslint', configName]);
+    await this.install(['eslint', configName, 'lint-staged', 'husky']);
     this.spinner.stop();
     this.extendPackage({
       husky: {
