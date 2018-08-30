@@ -37,6 +37,16 @@ dev init
   gitignore
 ```
 
+### Convert CSS file to JS
+
+Convert `src/**/*.css` file to `src/**/*.css.js`
+
+`src`(Directory) is optional, using cwd if not exist
+
+```sh
+dev css-to-js src
+```
+
 ## TODO
 
 - jsinspect
