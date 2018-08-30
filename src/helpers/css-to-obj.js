@@ -54,6 +54,10 @@ const transform = opts => (rules, result = {}) => {
 };
 
 const toObj = (css, opts) => {
+  stylis.set({
+    prefix: false,
+    preserve: true,
+  });
   const wrapped = stylis(SEL, css);
   const ast = parse(wrapped);
   const obj = transform(opts)(ast.stylesheet.rules);
