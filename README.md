@@ -49,4 +49,5 @@ dev css-to-js src
 
 ## TODO
 
+- open repo in browser
 - jsinspect

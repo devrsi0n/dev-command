@@ -5,7 +5,7 @@ const Generator = require('./base-generator');
 class PrettierGenerator extends Generator {
   async writing() {
     this.copyBoilerplate('.prettierrc.ejs');
-    await this.install(['prettier', 'lint-staged', 'husky@next']);
+    await this.install(this._getPackages());
     this.extendPackage({
       husky: {
         hooks: {
@@ -16,6 +16,13 @@ class PrettierGenerator extends Generator {
         '*.{json,css,md}': ['prettier --write', 'git add'],
       },
     });
+  }
+
+  /**
+   * For rewrite packages
+   */
+  _getPackages() {
+    return ['prettier', 'lint-staged', 'husky'];
   }
 }
 

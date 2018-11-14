@@ -47,10 +47,9 @@ class ESLintGenerator extends Generator {
 
   async writing() {
     this.spinner.start();
-    const { configName } = this;
     this.copyBoilerplate('.eslintrc.ejs');
     this.copyBoilerplate('.eslintignore.ejs');
-    await this.install(['eslint', configName, 'lint-staged', 'husky']);
+    await this.install(this._getPackages());
     this.spinner.stop();
     this.extendPackage({
       husky: {
@@ -62,6 +61,11 @@ class ESLintGenerator extends Generator {
         '*.{js,jsx}': ['eslint --fix', 'git add'],
       },
     });
+  }
+
+  _getPackages() {
+    const { configName } = this;
+    return ['eslint', configName, 'lint-staged', 'husky'];
   }
 }
 
