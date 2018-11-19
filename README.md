@@ -18,7 +18,7 @@ yarn global add dev-command
 
 ## Usage
 
-### Init boilerplates
+### init
 
 The `init` command will generate flexible config files or scripts and install all npm dependencies silently.
 
@@ -37,7 +37,7 @@ dev init
   gitignore
 ```
 
-### Open GIT repo
+### open
 
 Open git repo or package.json repo URL with default browser in current working directory.
 
@@ -45,7 +45,7 @@ Open git repo or package.json repo URL with default browser in current working d
 dev open
 ```
 
-### Convert CSS file to JS
+### css-to-js
 
 Convert `src/**/*.css` file to `src/**/*.css.js`
 
