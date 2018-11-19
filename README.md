@@ -37,6 +37,14 @@ dev init
   gitignore
 ```
 
+### Open GIT repo
+
+Open git repo or package.json repo URL with default browser in current working directory.
+
+```sh
+dev open
+```
+
 ### Convert CSS file to JS
 
 Convert `src/**/*.css` file to `src/**/*.css.js`
@@ -49,5 +57,6 @@ dev css-to-js src
 
 ## TODO
 
-- open repo in browser
+- ~~open repo in browser~~
+  - add directory option support
 - jsinspect

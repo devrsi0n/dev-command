@@ -1,6 +1,7 @@
 'use strict';
 
 const shell = require('shelljs');
+const debug = require('debug')('dev:shell');
 
 /**
  * Execute shell command asynchronously
@@ -12,10 +13,10 @@ function exec(cmdStr, option = {}) {
   return new Promise((resolve, reject) => {
     shell.exec(cmdStr, { ...option }, (code, stdout, stderr) => {
       if (!code) {
-        console.log(`$ ${cmdStr}: ${stdout}`);
+        debug(`$ ${cmdStr}: ${stdout}`);
         resolve(stdout);
       } else {
-        console.error(
+        debug(
           `$ ${cmdStr}: execute error, stderr: ${stderr}, code: ${code}, stdout: ${stdout}`
         );
         reject(stderr || code || stdout);

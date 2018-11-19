@@ -2,10 +2,10 @@
 
 const path = require('path');
 const Generator = require('yeoman-generator');
-const { exec, execSync } = require('../helpers/shell');
 const ora = require('ora');
-const debug = require('debug')('dev-command');
+const debug = require('debug')('dev:Generator');
 const inquirer = require('inquirer');
+const { exec, execSync } = require('../helpers/shell');
 
 const spinner = ora('Installing config file and dependencies\n');
 
