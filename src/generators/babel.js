@@ -40,8 +40,9 @@ class BabelGenerator extends Generator {
   }
 
   async writing() {
+    // TODO: stage presets
     const content = {
-      preset: [],
+      presets: [],
     };
     if (this.presetEnv) {
       const targets = {};
@@ -58,6 +59,7 @@ class BabelGenerator extends Generator {
     }
     this.fs.writeJSON(this.destinationPath('.babelrc'), content, null, 2);
     const pkgs = [
+      'babel-core',
       this.presetEnv && 'babel-preset-env',
       this.presetReact && 'babel-preset-react',
     ].filter(Boolean);
