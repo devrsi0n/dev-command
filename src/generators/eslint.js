@@ -52,6 +52,9 @@ class ESLintGenerator extends Generator {
     await this.install(this._getPackages());
     this.spinner.stop();
     this.extendPackage({
+      scripts: {
+        eslint: 'eslint --fix src/',
+      },
       husky: {
         hooks: {
           'pre-commit': 'lint-staged',

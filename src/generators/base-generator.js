@@ -5,6 +5,7 @@ const Generator = require('yeoman-generator');
 const ora = require('ora');
 const debug = require('debug')('dev:Generator');
 const inquirer = require('inquirer');
+const signale = require('signale');
 const { exec, execSync } = require('../helpers/shell');
 
 const spinner = ora('Installing config file and dependencies\n');
@@ -17,6 +18,7 @@ class BaseGenerator extends Generator {
 
     this.sourceRoot(path.join(__dirname, '../boilerplates'));
     this.inquirer = inquirer;
+    Object.assign(this, signale);
     this.debug = debug;
     this.spinner = spinner;
     this.exec = exec;

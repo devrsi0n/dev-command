@@ -2,7 +2,7 @@
 
 const { Command, flags } = require('@oclif/command');
 const { createEnv } = require('yeoman-environment');
-const logSymbols = require('log-symbols');
+const signale = require('signale');
 const { prompt, Separator } = require('inquirer');
 const debug = require('debug')('dev:Command');
 const { exec, execSync } = require('./helpers/shell');
@@ -14,6 +14,7 @@ class BaseCommand extends Command {
     this.Separator = Separator;
     this.exec = exec;
     this.execSync = execSync;
+    Object.assign(this, signale);
     this.debug = debug;
   }
 
@@ -28,18 +29,6 @@ class BaseCommand extends Command {
         else resolve(results);
       });
     });
-  }
-
-  info(...args) {
-    console.log(...args);
-  }
-
-  success(msg) {
-    this.log(`${logSymbols.success} ${msg}`);
-  }
-
-  error(...args) {
-    console.error(...args);
   }
 
   async init() {

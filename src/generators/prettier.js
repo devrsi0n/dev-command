@@ -7,13 +7,16 @@ class PrettierGenerator extends Generator {
     this.copyBoilerplate('.prettierrc.ejs');
     await this.install(this._getPackages());
     this.extendPackage({
+      scripts: {
+        prettier: 'prettier --write src/',
+      },
       husky: {
         hooks: {
           'pre-commit': 'lint-staged',
         },
       },
       'lint-staged': {
-        '*.{json,css,md}': ['prettier --write', 'git add'],
+        '*.{html,json,css,md}': ['prettier --write', 'git add'],
       },
     });
   }
