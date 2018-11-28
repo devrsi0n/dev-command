@@ -1,7 +1,7 @@
 'use strict';
 
 const { flags: flag } = require('@oclif/command');
-const BaseCommand = require('../base-command');
+const BaseCommand = require('./base-command');
 
 class InitCommand extends BaseCommand {
   async run() {

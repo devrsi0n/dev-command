@@ -5,7 +5,7 @@ const { createEnv } = require('yeoman-environment');
 const signale = require('signale');
 const { prompt, Separator } = require('inquirer');
 const debug = require('debug')('dev:Command');
-const { exec, execSync } = require('./helpers/shell');
+const { exec, execSync } = require('../helpers/shell');
 
 class BaseCommand extends Command {
   constructor(...args) {
@@ -21,7 +21,7 @@ class BaseCommand extends Command {
   async generate(type, generatorOptions) {
     const env = createEnv();
 
-    env.register(require.resolve(`./generators/${type}`), `dev:${type}`);
+    env.register(require.resolve(`../generators/${type}`), `dev:${type}`);
 
     await new Promise((resolve, reject) => {
       env.run(`dev:${type}`, generatorOptions, (err, results) => {

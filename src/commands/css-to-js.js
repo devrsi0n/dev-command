@@ -3,11 +3,11 @@
 // const { flags: flag } = require('@oclif/command');
 const path = require('path');
 const util = require('util');
-const cssToObject = require('../helpers/css-to-obj');
 const fs = require('fs');
 const dir = require('node-dir');
 const prettier = require('prettier');
-const BaseCommand = require('../base-command');
+const BaseCommand = require('./base-command');
+const cssToObject = require('../helpers/css-to-obj');
 
 class CSSToObjCommand extends BaseCommand {
   async run() {

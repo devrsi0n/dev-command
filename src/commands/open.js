@@ -2,7 +2,7 @@
 
 const opn = require('opn');
 const fs = require('fs-extra');
-const BaseCommand = require('../base-command');
+const BaseCommand = require('./base-command');
 
 // git@github.com:devrsi0n/dev-command.git
 const sshGitRepoRE = /^git@([\w\.\-]+):([\w\.\-\/]+)\.git$/;
@@ -25,6 +25,12 @@ class OpenCommand extends BaseCommand {
       const { repository, homepage } = pkg;
       const repo = typeof repository === 'object' ? repository.url : repository;
       url = repo || homepage;
+    }
+    if (!url) {
+      this.warn(
+        `"${process.cwd()}" is not a git repo nor contains package.json`
+      );
+      return;
     }
     this.debug(`origin url: ${url}`);
     if (sshGitRepoRE.test(url)) {
