@@ -16,12 +16,13 @@ class RunCommand extends BaseCommand {
         await this.runPrettier(directory);
         break;
       default:
+        this.warn('Not support tool.');
         break;
     }
   }
 
   async runESLint(directory) {
-    const cmd = `npx eslint --ext .jsx,.js --fix "${directory}"`;
+    const cmd = `npx eslint --ext .jsx,.js --fix "${directory}" --ignore-pattern "node_modules"`;
     this.info(`$ ${cmd}`);
     await this.exec(cmd);
   }
@@ -49,7 +50,7 @@ RunCommand.args = [
     name: 'directory',
     required: false,
     description: 'target directory',
-    default: 'src',
+    default: process.cwd(),
   },
 ];
 
