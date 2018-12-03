@@ -1,53 +1,52 @@
-.container{
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding:24 32 24 0;
-    margin-left: 32;
-    border-bottom: 1 solid #E6E7EB;
-    /* min-height: 100; */
+.container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24 32 24 0;
+  margin-left: 32;
+  border-bottom: 1 solid #e6e7eb;
+  /* min-height: 100; */
 }
-.form-item-wrap{
-    display: flex;
-    flex-direction: column;
+.form-item-wrap {
+  display: flex;
+  flex-direction: column;
 }
-.label{
-    width: 200;
-    font-size: 32;
+.label {
+  width: 200;
+  font-size: 32;
 }
-.contorl{
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.contorl {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.placeholder{
-   color:#cccccc;
-   font-size: 28;
+.placeholder {
+  color: #cccccc;
+  font-size: 28;
 }
-.input{
-    flex: 1;
-    font-size: 28;
+.input {
+  flex: 1;
+  font-size: 28;
 }
 .input-read {
-    color: #999999
+  color: #999999;
 }
-.input-edit{
-
+.input-edit {
 }
-.value-text{
-    font-size: 28;
-    flex: 1;
-    padding-left:20;
+.value-text {
+  font-size: 28;
+  flex: 1;
+  padding-left: 20;
 }
-.error{
-    background-color: #FFFFFF;
-    color: red;
-    font-size: 24;
-    padding:20 40;
-    border-bottom: 1px solid red;
+.error {
+  background-color: #ffffff;
+  color: red;
+  font-size: 24;
+  padding: 20 40;
+  border-bottom: 1px solid red;
 }
 
 ._test {

@@ -9,8 +9,8 @@ class CommitlintGenerator extends Generator {
       name: 'name',
       message: 'Commitlint config',
       choices: [
-        '@commitlint/config-angular',
         '@commitlint/config-conventional',
+        '@commitlint/config-angular',
         '@commitlint/config-lerna-scopes',
         '@commitlint/config-patternplate',
         new this.inquirer.Separator(),
@@ -19,7 +19,7 @@ class CommitlintGenerator extends Generator {
           value: 'custom',
         },
       ],
-      default: '@commitlint/config-angular',
+      default: '@commitlint/config-conventional',
     });
     if (name === 'custom') {
       const { customName } = await this.prompt({
@@ -37,8 +37,10 @@ class CommitlintGenerator extends Generator {
     this.copyBoilerplate('.commitlintrc.js.ejs');
     await this.install(this._getPackages());
     this.extendPackage({
-      scripts: {
-        commitmsg: 'commitlint -E GIT_PARAMS',
+      husky: {
+        hooks: {
+          'commit-msg': 'commitlint -E GIT_PARAMS',
+        },
       },
     });
   }
