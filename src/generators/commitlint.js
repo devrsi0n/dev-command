@@ -39,7 +39,7 @@ class CommitlintGenerator extends Generator {
     this.extendPackage({
       husky: {
         hooks: {
-          'commit-msg': 'commitlint -E GIT_PARAMS',
+          'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
         },
       },
     });

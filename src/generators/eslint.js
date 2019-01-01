@@ -62,6 +62,7 @@ class ESLintGenerator extends Generator {
       },
       'lint-staged': {
         '*.{js,jsx}': ['eslint --fix', 'git add'],
+        ignore: ['**/dist/*.js', '**/lib/*.js', '**/build/*.js'],
       },
     });
   }
