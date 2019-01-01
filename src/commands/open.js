@@ -16,9 +16,11 @@ const httpGitRepoRE = /(^https?:\/\/[\w\.\-\/]+)\.git$/;
 class OpenCommand extends BaseCommand {
   async run() {
     const { flags } = this.parse(OpenCommand);
-    const { npm } = flags;
+    const { npm, home } = flags;
     if (npm) {
       await this.openNpmWebsite();
+    } else if (home) {
+      await this.openHomepage();
     } else {
       await this.openGitWebsite();
     }
@@ -67,6 +69,16 @@ class OpenCommand extends BaseCommand {
     await this.openURL(url);
   }
 
+  async openHomepage() {
+    const { homepage } = await this.getPackage();
+    if (!homepage) {
+      this.warn(`Homepage not exists`);
+      this.exit(-1);
+    }
+
+    await this.openURL(homepage);
+  }
+
   async getPackage() {
     const pkgPath = path.resolve(cwd, './package.json');
     if (!fs.existsSync(pkgPath)) {
@@ -91,11 +103,16 @@ OpenCommand.flags = {
   npm: flag.boolean({
     default: false,
     char: 'n',
-    description: 'open in npm website',
+    description: "open lib's npm website",
+  }),
+  home: flag.boolean({
+    default: false,
+    char: 'h',
+    description: "open lib's homepage",
   }),
 };
 
-OpenCommand.description = `Open code repo in default browser`;
+OpenCommand.description = `Open lib's website in default browser, e.g. git repo, npm or homepage`;
 
 OpenCommand.usage = 'open';
 OpenCommand.examples = ['$ dev open', '$ dev open --npm'];
