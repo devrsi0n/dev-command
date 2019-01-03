@@ -12,7 +12,6 @@ const cssToObject = require('../helpers/css-to-obj');
 class CSSToObjCommand extends BaseCommand {
   async run() {
     const { args } = this.parse(CSSToObjCommand);
-    // TODO: ignore node_modules
     const files = await dir.promiseFiles(args.dir);
     for (const file of files) {
       if (!file.includes('node_modules') && file.endsWith('.css')) {
@@ -34,7 +33,6 @@ class CSSToObjCommand extends BaseCommand {
         this.log(`${file} => ${jsName}`);
       }
     }
-    this.success('Done');
   }
 }
 

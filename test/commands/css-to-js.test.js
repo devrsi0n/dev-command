@@ -12,7 +12,6 @@ describe('css-to-js', () => {
     .stdout({ print: true })
     .command(['css-to-js'])
     .it('convert ok', ctx => {
-      // console.dir(ctx);
       expect(ctx.stdout).to.contain('test.css');
     });
 });

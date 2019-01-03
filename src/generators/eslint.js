@@ -7,7 +7,7 @@ class ESLintGenerator extends Generator {
     const { name } = await this.prompt({
       type: 'list',
       name: 'name',
-      message: 'ESLint config',
+      message: 'ESLint configs',
       choices: [
         ...this.getESLintConfigList(),
         new this.inquirer.Separator(),
@@ -62,7 +62,7 @@ class ESLintGenerator extends Generator {
       },
       'lint-staged': {
         '*.{js,jsx}': ['eslint --fix', 'git add'],
-        ignore: ['**/dist/*.js', '**/lib/*.js', '**/build/*.js'],
+        ignore: ['**/dist/**/*.js', '**/lib/**/*.js', '**/build/**/*.js'],
       },
     });
   }

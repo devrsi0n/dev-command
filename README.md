@@ -4,8 +4,6 @@ A modern, flexible command tool for JavaScript developers.
 
 [![Version](https://img.shields.io/npm/v/dev-command.svg)](https://npmjs.org/package/dev-command)
 [![CircleCI](https://circleci.com/gh/devrsi0n/dev-command/tree/master.svg?style=shield)](https://circleci.com/gh/devrsi0n/dev-command/tree/master)
-[![Codecov](https://codecov.io/gh/devrsi0n/dev-command/branch/master/graph/badge.svg)](https://codecov.io/gh/devrsi0n/dev-command)
-[![Downloads/week](https://img.shields.io/npm/dw/dev-command.svg)](https://npmjs.org/package/dev-command)
 [![License](https://img.shields.io/npm/l/dev-command.svg)](https://github.com/devrsi0n/dev-command/blob/master/package.json)
 
 ## Install
@@ -55,8 +53,3 @@ Convert `src/**/*.css` file to `src/**/*.css.js`
 dev css-to-js src
 ```
 
-## TODO
-
-- ~~open repo in browser~~
-  - add directory option support
-- jsinspect

@@ -13,6 +13,7 @@ class BabelGenerator extends Generator {
     });
     this.presetEnv = false;
     this.presetReact = false;
+    // TODO: add babel@7
     if (presets.includes('babel-preset-env')) {
       this.presetEnv = true;
       const { targets } = await this.prompt({

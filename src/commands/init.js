@@ -20,6 +20,10 @@ class InitCommand extends BaseCommand {
           },
           'prettier',
           'commitlint',
+          {
+            name: '.npmrc',
+            value: 'npmrc',
+          },
           'babel',
           'editorconfig',
           'license',
@@ -34,7 +38,6 @@ class InitCommand extends BaseCommand {
       type = answer.type; // eslint-disable-line
     }
     await this.generate(type);
-    this.success('Done');
   }
 }
 

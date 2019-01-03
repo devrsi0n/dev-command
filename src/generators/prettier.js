@@ -17,7 +17,7 @@ class PrettierGenerator extends Generator {
       },
       'lint-staged': {
         '*.{html,json,css,md}': ['prettier --write', 'git add'],
-        ignore: ['**/dist/*.js', '**/lib/*.js', '**/build/*.js'],
+        ignore: ['**/dist/**/*.js', '**/lib/**/*.js', '**/build/**/*.js'],
       },
     });
   }
