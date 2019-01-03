@@ -1,7 +1,7 @@
 {
   "name": "dev-command",
   "description": "A modern, flexible command tool for JavaScript developers",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "author": "devrsi0n <devrsi0n@gmail.com>",
   "bin": {
     "dev": "./bin/run"
