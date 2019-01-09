@@ -59,15 +59,18 @@ class BabelGenerator extends Generator {
       content.presets.push('react');
     }
     this.fs.writeJSON(this.destinationPath('.babelrc'), content, null, 2);
+    this.extendPackage({
+      scripts: {
+        babel: 'babel src --out-dir lib --copy-files',
+      },
+    });
     const pkgs = [
       'babel-cli',
       'babel-core',
       this.presetEnv && 'babel-preset-env',
       this.presetReact && 'babel-preset-react',
     ].filter(Boolean);
-    if (pkgs.length) {
-      await this.install(pkgs);
-    }
+    await this.install(pkgs);
   }
 }
 
