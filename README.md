@@ -43,6 +43,19 @@ Open git repo or package.json repo URL with default browser in current working d
 dev open
 ```
 
+### git
+
+```sh
+dev git log
+```
+
+Turn ugly `git log` into pretty graph.
+
+<div align="left">
+  <img src="./assets/git-log.png" width="350px" style="margin-right:50px;" alt="Git log">
+  <img src="./assets/git-pretty-log.png" width="350px" alt="Git pretty log">
+</div>
+
 ### css-to-js
 
 Convert `src/**/*.css` file to `src/**/*.css.js`
