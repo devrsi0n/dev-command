@@ -46,7 +46,7 @@ class OpenCommand extends BaseCommand {
     let url = '';
     try {
       url = await this.exec('git config --get remote.origin.url', {
-        silent: true,
+        stdio: 'ignore',
       });
     } catch (err) {
       // ignore

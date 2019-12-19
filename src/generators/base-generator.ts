@@ -2,11 +2,11 @@ import path from 'path';
 import Generator from 'yeoman-generator';
 import ora from 'ora';
 import debugFactory from 'debug';
-const debug = debugFactory('dev:Generator');
 import inquirer from 'inquirer';
 import signale from 'signale';
 import { exec, execSync } from '../helpers/shell';
 
+const debug = debugFactory('dev:Generator');
 const spinner = ora('Installing config file and dependencies\n');
 
 class BaseGenerator extends Generator {
@@ -32,7 +32,7 @@ class BaseGenerator extends Generator {
     this.exec = exec;
     this.useYarn = false;
     const { stdout } = execSync('yarn --version');
-    if (/\d+.\d+.\d+/.test(stdout) && this.doesDstExists('yarn.lock')) {
+    if (/\d+.\d+.\d+/.test(stdout.toString()) && this.doesDstExists('yarn.lock')) {
       this.useYarn = true;
     }
     this.debug(`useYarn: ${this.useYarn}`);
