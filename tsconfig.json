@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "outDir": "lib",
+    "rootDir": ".",
+    // "strict": true,
+    "target": "es2017"
+  },
+  // "include": [
+  //   "./src/**/*"
+  // ]
+}

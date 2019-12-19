@@ -1,9 +1,18 @@
-'use strict';
-
-const { flags: flag } = require('@oclif/command');
-const BaseCommand = require('./base-command');
+import { flags as flag } from '@oclif/command';
+import BaseCommand from './base-command';
 
 class InitCommand extends BaseCommand {
+  static flags = {
+    type: flag.string({
+      char: 't',
+      description: 'boilerplate type',
+    }),
+  };
+
+  static description = `Init boilerplates`;
+  static usage = 'init';
+  static examples = ['$ dev init', '$ dev init --type=react'];
+
   async run() {
     const { prompt } = this;
     const { flags } = this.parse(InitCommand);
@@ -41,16 +50,4 @@ class InitCommand extends BaseCommand {
   }
 }
 
-InitCommand.description = `Init boilerplates`;
-
-InitCommand.flags = {
-  type: flag.string({
-    char: 't',
-    description: 'boilerplate type',
-  }),
-};
-
-InitCommand.usage = 'init';
-InitCommand.examples = ['$ dev init', '$ dev init --type=react'];
-
-module.exports = InitCommand;
+export default InitCommand;

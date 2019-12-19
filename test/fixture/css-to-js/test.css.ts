@@ -1,0 +1,33 @@
+export default {
+  container: {
+    backgroundColor: '#ffffff',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '24 32 24 0',
+    marginLeft: '32',
+    borderBottom: '1 solid #e6e7eb',
+  },
+  formItemWrap: { display: 'flex', flexDirection: 'column' },
+  label: { width: '200', fontSize: '32' },
+  contorl: {
+    flex: '1',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  placeholder: { color: '#cccccc', fontSize: '28' },
+  input: { flex: '1', fontSize: '28' },
+  inputRead: { color: '#999999' },
+  inputEdit: {},
+  valueText: { fontSize: '28', flex: '1', paddingLeft: '20' },
+  error: {
+    backgroundColor: '#ffffff',
+    color: 'red',
+    fontSize: '24',
+    padding: '20 40',
+    borderBottom: '1px solid red',
+  },
+  _test: { display: 'flex' },
+};

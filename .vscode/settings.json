@@ -3,5 +3,6 @@
     "Npmrc",
     "commitlintrc",
     "oclif"
-  ]
+  ],
+  "eslint.enable": false
 }

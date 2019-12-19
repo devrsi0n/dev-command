@@ -1,4 +1,4 @@
-'use strict';
+
 
 // const { expect, test } = require('@oclif/test');
 // const path = require('path');

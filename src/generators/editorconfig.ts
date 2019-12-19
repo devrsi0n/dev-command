@@ -1,6 +1,4 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class EditorConfigGenerator extends Generator {
   writing() {
@@ -8,4 +6,4 @@ class EditorConfigGenerator extends Generator {
   }
 }
 
-module.exports = EditorConfigGenerator;
+export default EditorConfigGenerator;

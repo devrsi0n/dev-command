@@ -1,7 +1,5 @@
-'use strict';
-
-const { expect, test } = require('@oclif/test');
-const path = require('path');
+import { expect, test } from '@oclif/test';
+import path from 'path';
 
 describe('css-to-js', () => {
   before(() => {

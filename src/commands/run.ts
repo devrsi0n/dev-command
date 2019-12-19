@@ -1,10 +1,27 @@
-'use strict';
+import path from 'path';
 
-// const { flags: flag } = require('@oclif/command');
-const path = require('path');
-const BaseCommand = require('./base-command');
+import BaseCommand from './base-command';
 
 class RunCommand extends BaseCommand {
+  static description = `Run all kinds of CLI command`;
+  static usage = 'run';
+  static examples = ['$ dev run'];
+  static args = [
+    {
+      name: 'tool',
+      required: true,
+      description: 'tool name to run',
+      default: 'eslint',
+      options: ['eslint', 'prettier', 'commitlint'],
+    },
+    {
+      name: 'directory',
+      required: false,
+      description: 'target directory',
+      default: process.cwd(),
+    },
+  ];
+
   async run() {
     const { args } = this.parse(RunCommand);
     const { tool, directory } = args;
@@ -23,7 +40,7 @@ class RunCommand extends BaseCommand {
 
   async runESLint(directory) {
     const cmd = `npx eslint --ext .jsx,.js --fix "${directory}" --ignore-pattern "node_modules"`;
-    this.info(`$ ${cmd}`);
+    this.debug(`$ ${cmd}`);
     await this.exec(cmd);
   }
 
@@ -33,29 +50,9 @@ class RunCommand extends BaseCommand {
       './**/*.{js,jsx,ts,tsx,json,html,vue,css,scss,md,yml,flow}'
     );
     const cmd = `npx prettier --write "${dir}"`;
-    this.info(`$ ${cmd}`);
+    this.debug(`$ ${cmd}`);
     await this.exec(cmd);
   }
 }
 
-RunCommand.args = [
-  {
-    name: 'tool',
-    required: true,
-    description: 'tool name to run',
-    default: 'eslint',
-    options: ['eslint', 'prettier', 'commitlint'],
-  },
-  {
-    name: 'directory',
-    required: false,
-    description: 'target directory',
-    default: process.cwd(),
-  },
-];
-
-RunCommand.description = `Run all kinds of CLI command`;
-RunCommand.usage = 'run';
-RunCommand.examples = ['$ dev run'];
-
-module.exports = RunCommand;
+export default RunCommand;

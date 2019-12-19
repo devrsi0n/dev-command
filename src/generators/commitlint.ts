@@ -1,8 +1,8 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class CommitlintGenerator extends Generator {
+  configName: string;
+
   async prompting() {
     const { name } = await this.prompt({
       type: 'list',
@@ -50,4 +50,4 @@ class CommitlintGenerator extends Generator {
   }
 }
 
-module.exports = CommitlintGenerator;
+export default CommitlintGenerator;

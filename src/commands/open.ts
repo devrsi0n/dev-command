@@ -1,10 +1,8 @@
-'use strict';
-
-const { flags: flag } = require('@oclif/command');
-const opn = require('opn');
-const fs = require('fs-extra');
-const path = require('path');
-const BaseCommand = require('./base-command');
+import { flags as flag } from '@oclif/command';
+import opn from 'opn';
+import fs from 'fs-extra';
+import path from 'path';
+import BaseCommand from './base-command';
 
 const cwd = process.cwd();
 
@@ -14,6 +12,24 @@ const sshGitRepoRE = /^git@([\w\.\-]+):([\w\.\-\/]+)\.git$/;
 const httpGitRepoRE = /(^https?:\/\/[\w\.\-\/]+)\.git$/;
 
 class OpenCommand extends BaseCommand {
+  static flags = {
+    npm: flag.boolean({
+      default: false,
+      char: 'n',
+      description: "open lib's npm website",
+    }),
+    home: flag.boolean({
+      default: false,
+      char: 'h',
+      description: "open lib's homepage",
+    }),
+  };
+
+  static description = `Open lib's website in default browser, e.g. git repo, npm or homepage`;
+
+  static usage = 'open';
+  static examples = ['$ dev open', '$ dev open --npm'];
+
   async run() {
     const { flags } = this.parse(OpenCommand);
     const { npm, home } = flags;
@@ -88,33 +104,14 @@ class OpenCommand extends BaseCommand {
     return fs.readJSON(pkgPath);
   }
 
-  async openURL(url) {
+  async openURL(url: string) {
     try {
-      this.info(url);
+      this.debug(url);
       await opn(url, { wait: false });
     } catch (error) {
       this.error(`Open url(${url}) failed: ${JSON.stringify(error, null, 2)}`);
-      this.exit(-1);
     }
   }
 }
 
-OpenCommand.flags = {
-  npm: flag.boolean({
-    default: false,
-    char: 'n',
-    description: "open lib's npm website",
-  }),
-  home: flag.boolean({
-    default: false,
-    char: 'h',
-    description: "open lib's homepage",
-  }),
-};
-
-OpenCommand.description = `Open lib's website in default browser, e.g. git repo, npm or homepage`;
-
-OpenCommand.usage = 'open';
-OpenCommand.examples = ['$ dev open', '$ dev open --npm'];
-
-module.exports = OpenCommand;
+export default OpenCommand;

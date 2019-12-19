@@ -52,4 +52,3 @@ Convert `src/**/*.css` file to `src/**/*.css.js`
 ```sh
 dev css-to-js src
 ```
-

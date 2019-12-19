@@ -1,8 +1,11 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class BabelGenerator extends Generator {
+  presetEnv: boolean;
+  presetReact: boolean;
+  browsers: boolean;
+  node: boolean;
+
   async prompting() {
     const { presets } = await this.prompt({
       type: 'checkbox',
@@ -46,7 +49,7 @@ class BabelGenerator extends Generator {
       presets: [],
     };
     if (this.presetEnv) {
-      const targets = {};
+      const targets: {browsers?:string[], node?:string} = {};
       if (this.browsers) {
         targets.browsers = ['last 2 versions', 'not ie <= 8'];
       }
@@ -74,4 +77,4 @@ class BabelGenerator extends Generator {
   }
 }
 
-module.exports = BabelGenerator;
+export default BabelGenerator;

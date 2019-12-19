@@ -1,16 +1,16 @@
 {
   "root": true,
-  "extends": "@devrsi0n/eslint-config-base",
-  "parser": "babel-eslint",
-  "env": {
-    "mocha": true
-  },
+  "extends": "eslint-config-prettify-ts-base",
+  // "env": {
+  //   "mocha": true
+  // },
   "rules": {
     "no-restricted-syntax": "off",
     "no-await-in-loop": "off",
     "class-methods-use-this": "off",
     "no-console": "off",
     "no-underscore-dangle": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "import/prefer-default-export": "off"
   }
 }

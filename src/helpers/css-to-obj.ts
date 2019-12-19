@@ -1,5 +1,5 @@
-const { parse } = require('css');
-const stylis = require('stylis');
+import { parse } from 'css';
+import stylis from 'stylis';
 
 const SEL = '_';
 const SELRE = new RegExp(`^${SEL}`);
@@ -10,7 +10,12 @@ const camel = str =>
 const parsePx = val =>
   /px$/.test(val) ? parseFloat(val.replace(/px$/, '')) : val;
 
-const getDeclarations = (decs, opts = {}) => {
+interface Opts {
+  camelCase?: boolean;
+  numbers?: boolean;
+}
+
+const getDeclarations = (decs, opts: Opts = {}) => {
   const result = decs
     .map(d => ({
       key: opts.camelCase ? camel(d.property) : d.property,
@@ -64,4 +69,4 @@ const toObj = (css, opts) => {
   return obj;
 };
 
-module.exports = toObj;
+export default toObj;

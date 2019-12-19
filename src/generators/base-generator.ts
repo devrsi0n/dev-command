@@ -1,20 +1,28 @@
-'use strict';
-
-const path = require('path');
-const Generator = require('yeoman-generator');
-const ora = require('ora');
-const debug = require('debug')('dev:Generator');
-const inquirer = require('inquirer');
-const signale = require('signale');
-const { exec, execSync } = require('../helpers/shell');
+import path from 'path';
+import Generator from 'yeoman-generator';
+import ora from 'ora';
+import debugFactory from 'debug';
+const debug = debugFactory('dev:Generator');
+import inquirer from 'inquirer';
+import signale from 'signale';
+import { exec, execSync } from '../helpers/shell';
 
 const spinner = ora('Installing config file and dependencies\n');
 
 class BaseGenerator extends Generator {
-  constructor(...args) {
-    super(...args);
+  pjson: object;
+  inquirer: typeof inquirer;
+  debug: typeof debug;
+  spinner: typeof spinner;
+  exec: typeof exec;
+  useYarn: boolean;
+
+  constructor(args: string | string[], options: {}) {
+    super(args, options);
     this.pjson = this.fs.readJSON('package.json');
-    if (!this.pjson) throw new Error('not in a JavaScript project directory');
+    if (!this.pjson) {
+      throw new Error('not in a JavaScript project directory');
+    }
 
     this.sourceRoot(path.join(__dirname, '../boilerplates'));
     this.inquirer = inquirer;
@@ -30,11 +38,11 @@ class BaseGenerator extends Generator {
     this.debug(`useYarn: ${this.useYarn}`);
   }
 
-  doesDstExists($path) {
+  doesDstExists($path: string) {
     return this.fs.exists(this.destinationPath($path));
   }
 
-  async install(pkgs, options) {
+  async install(pkgs: string | string[], options = {}) {
     if (this.useYarn) {
       this.yarnInstall(pkgs, { dev: true, ...options });
     } else {
@@ -42,7 +50,7 @@ class BaseGenerator extends Generator {
     }
   }
 
-  copyBoilerplate(fromFileName, options) {
+  copyBoilerplate(fromFileName: string, options = {}) {
     const from = this.templatePath(fromFileName);
     const toFileName = fromFileName.slice(0, fromFileName.lastIndexOf('.'));
     const to = this.destinationPath(toFileName);
@@ -50,9 +58,9 @@ class BaseGenerator extends Generator {
     this.fs.copyTpl(from, to, options || this);
   }
 
-  extendPackage(extObj) {
+  extendPackage(extObj = {}) {
     this.fs.extendJSON(this.destinationPath('package.json'), extObj);
   }
 }
 
-module.exports = BaseGenerator;
+export default BaseGenerator;

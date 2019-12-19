@@ -1,8 +1,8 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class ESLintGenerator extends Generator {
+  configName: string;
+
   async prompting() {
     const { name } = await this.prompt({
       type: 'list',
@@ -73,4 +73,4 @@ class ESLintGenerator extends Generator {
   }
 }
 
-module.exports = ESLintGenerator;
+export default ESLintGenerator;

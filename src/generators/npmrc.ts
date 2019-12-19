@@ -1,8 +1,8 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class NpmrcGenerator extends Generator {
+  configs: string[];
+
   async prompting() {
     const { configs } = await this.prompt({
       type: 'checkbox',
@@ -57,4 +57,4 @@ class NpmrcGenerator extends Generator {
   }
 }
 
-module.exports = NpmrcGenerator;
+export default NpmrcGenerator;

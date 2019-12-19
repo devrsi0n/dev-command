@@ -1,6 +1,4 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class PrettierGenerator extends Generator {
   async writing() {
@@ -30,4 +28,4 @@ class PrettierGenerator extends Generator {
   }
 }
 
-module.exports = PrettierGenerator;
+export default PrettierGenerator;

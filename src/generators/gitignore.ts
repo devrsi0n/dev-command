@@ -1,6 +1,4 @@
-'use strict';
-
-const Generator = require('./base-generator');
+import Generator from './base-generator';
 
 class GitignoreGenerator extends Generator {
   writing() {
@@ -8,4 +6,4 @@ class GitignoreGenerator extends Generator {
   }
 }
 
-module.exports = GitignoreGenerator;
+export default GitignoreGenerator;
